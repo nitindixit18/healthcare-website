@@ -1,462 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About NurtureCare - Our Mission & Team</title>
-  <!-- Stripe-inspired fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    /* Stripe-inspired design system */
-    :root {
-      /* Color Palette */
-      --color-bg: #ffffff;
-      --color-text: #171717;
-      --color-accent: #533afd;
-      --color-heading: #061b31;
-      --color-body: #64748d;
-      --color-label: #273951;
-      --color-border: #e5edf5;
-      --color-success: #15be53;
-      --color-brand-dark: #1c1e54;
-      --color-shadow-blue: rgba(50,50,93,0.25);
-      --color-shadow-black: rgba(0,0,0,0.1);
-      
-      /* Typography */
-      --font-primary: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      --font-mono: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-      
-      /* Spacing */
-      --spacing-1: 4px;
-      --spacing-2: 8px;
-      --spacing-3: 12px;
-      --spacing-4: 16px;
-      --spacing-5: 24px;
-      --spacing-6: 32px;
-      --spacing-7: 48px;
-      --spacing-8: 64px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophy & People | NurtureCare</title>
     
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: var(--font-primary);
-      color: var(--color-text);
-      background: var(--color-bg);
-      line-height: 1.6;
-    }
-    
-    h1, h2, h3, h4, h5, h6 {
-      color: var(--color-heading);
-      font-weight: 300;
-      line-height: 1.2;
-      margin-bottom: var(--spacing-3);
-    }
-    
-    h1 { font-size: 2.5rem; letter-spacing: -0.96px; }
-    h2 { font-size: 2rem; letter-spacing: -0.64px; }
-    h3 { font-size: 1.75rem; letter-spacing: -0.26px; }
-    h4 { font-size: 1.5rem; letter-spacing: -0.22px; }
-    p, li, label, input, textarea, select {
-      color: var(--color-body);
-      font-size: 1rem;
-      font-weight: 300-400;
-    }
-    
-    a {
-      color: var(--color-accent);
-      text-decoration: none;
-      font-weight: 400;
-    }
-    
-    a:hover {
-      color: #4434d4;
-    }
-    
-    .container {
-      width: 90%;
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: var(--spacing-6) 0;
-    }
-    
-    .btn-primary {
-      background: var(--color-accent);
-      color: white;
-      border: none;
-      padding: var(--spacing-2) var(--spacing-4);
-      border-radius: 4px;
-      font-family: var(--font-primary);
-      font-weight: 400;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-    
-    .btn-primary:hover {
-      background: #4434d4;
-    }
-    
-    .btn-outline {
-      background: transparent;
-      color: var(--color-accent);
-      border: 1px solid #b9b9f9;
-      padding: var(--spacing-2) var(--spacing-4);
-      border-radius: 4px;
-      font-family: var(--font-primary);
-      font-weight: 400;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-    
-    .btn-outline:hover {
-      background: rgba(83,58,253,0.05);
-    }
-    
-    .card {
-      background: white;
-      border: 1px solid var(--color-border);
-      border-radius: 6px;
-      padding: var(--spacing-5);
-      box-shadow: var(--color-shadow-blue) 0px 30px 45px -30px, var(--color-shadow-black) 0px 18px 36px -18px;
-      margin-bottom: var(--spacing-5);
-    }
-    
-    header {
-      background: white;
-      border-bottom: 1px solid var(--color-border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 80px;
-    }
-    
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 300;
-      letter-spacing: -0.64px;
-      color: var(--color-heading);
-    }
-    
-    .nav-links {
-      display: flex;
-      gap: var(--spacing-5);
-    }
-    
-    .nav-links a {
-      color: var(--color-label);
-      font-weight: 400;
-      font-size: 0.875rem;
-    }
-    
-    .nav-links a:hover {
-      color: var(--color-heading);
-    }
-    
-    .hero {
-      text-align: center;
-      padding: var(--spacing-7) 0;
-      background: white;
-    }
-    
-    .hero h1 {
-      font-size: 2.75rem;
-      letter-spacing: -1.1px;
-      margin-bottom: var(--spacing-4);
-    }
-    
-    .hero p {
-      font-size: 1.25rem;
-      color: var(--color-body);
-      max-width: 600px;
-      margin: 0 auto var(--spacing-5);
-    }
-    
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--spacing-5);
-      margin-top: var(--spacing-6);
-    }
-    
-    .team-member {
-      text-align: center;
-      padding: var(--spacing-4);
-    }
-    
-    .team-member img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto var(--spacing-3);
-      border: 3px solid var(--color-border);
-    }
-    
-    .team-member h3 {
-      margin-bottom: var(--spacing-2);
-    }
-    
-    .team-member p {
-      color: var(--color-label);
-      font-size: 0.9rem;
-      margin-bottom: var(--spacing-3);
-    }
-    
-    .values-section {
-      background: rgba(83,58,253,0.02);
-      border-radius: 8px;
-      padding: var(--spacing-6);
-      margin: var(--spacing-7) 0;
-    }
-    
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--spacing-4);
-    }
-    
-    .value-item {
-      text-align: center;
-      padding: var(--spacing-3);
-    }
-    
-    .value-icon {
-      width: 50px;
-      height: 50px;
-      background: var(--color-accent);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto var(--spacing-3);
-    }
-    
-    .value-icon svg {
-      width: 24px;
-      height: 24px;
-      fill: white;
-    }
-    
-    .stats-section {
-      display: flex;
-      justify-content: space-around;
-      text-align: center;
-      padding: var(--spacing-7) 0;
-      background: var(--color-brand-dark);
-      color: white;
-    }
-    
-    .stat-item h3 {
-      font-size: 2.5rem;
-      margin-bottom: var(--spacing-2);
-      font-weight: 300;
-    }
-    
-    .stat-item p {
-      opacity: 0.9;
-      font-size: 1.1rem;
-    }
-    
-    footer {
-      background: var(--color-brand-dark);
-      color: rgba(255,255,255,0.8);
-      padding: var(--spacing-6) 0;
-    }
-    
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: var(--spacing-5);
-    }
-    
-    .footer-section h3 {
-      color: white;
-      margin-bottom: var(--spacing-3);
-    }
-    
-    .footer-section a {
-      color: rgba(255,255,255,0.7);
-      display: block;
-      margin-bottom: var(--spacing-2);
-    }
-    
-    .footer-section a:hover {
-      color: white;
-    }
-    
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-      
-      .hero h1 {
-        font-size: 2rem;
-        letter-spacing: -0.64px;
-      }
-      
-      .footer-content {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      .stats-section {
-        flex-direction: column;
-      }
-    }
-  </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            sand: '#F9F7F2',
+                            terracotta: '#C97D60',
+                            charcoal: '#1A1A1A',
+                            clay: '#8D7B68',
+                            petal: '#F4E0DB'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Cormorant Garamond', 'serif'],
+                        sans: ['Outfit', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #F9F7F2; color: #1A1A1A; -webkit-font-smoothing: antialiased; }
+        .mesh-gradient {
+            background: radial-gradient(at 0% 0%, hsla(20, 48%, 91%, 1) 0, transparent 50%),
+                        radial-gradient(at 100% 100%, hsla(34, 42%, 88%, 1) 0, transparent 50%);
+            filter: blur(80px); z-index: -1;
+        }
+        .reveal-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-visible { opacity: 1; transform: translateY(0); }
+        .luxury-link { position: relative; }
+        .luxury-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.4s ease; }
+        .luxury-link:hover::after { transform: scaleX(1); transform-origin: left; }
+    </style>
 </head>
-<body>
-  <header>
-    <div class="nav-container container">
-      <div class="logo">NurtureCare</div>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="services.html">Services</a>
-        <a href="resources.html">Resources</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="container">
-      <h1>About NurtureCare Women's Health</h1>
-      <p>Our story began with a simple belief: every woman deserves healthcare that is both medically excellent and deeply compassionate. Founded by OB-GYN specialists who saw the gaps in traditional women's health, we've created a practice where clinical expertise meets genuine empathy.</p>
-    </div>
-  </section>
-
-  <section class="container">
-    <h2>Our Mission & Values</h2>
-    <div class="values-section">
-      <div class="values-grid">
-        <div class="value-item">
-          <div class="value-icon">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
-          </div>
-          <h3>Compassionate Care</h3>
-          <p>We listen without judgment and treat every patient with dignity, respect, and warmth.</p>
+<body class="font-sans font-light">
+    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference text-brand-sand">
+        <a href="index.html" class="font-display text-3xl italic tracking-tight">NurtureCare</a>
+        <div class="hidden md:flex space-x-12 text-sm uppercase tracking-widest font-medium">
+            <a href="about.html" class="luxury-link">Philosophy</a>
+            <a href="services.html" class="luxury-link">Services</a>
+            <a href="index.html#contact" class="luxury-link">Journal</a>
         </div>
-        <div class="value-item">
-          <div class="value-icon">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"/></svg>
-          </div>
-          <h3>Evidence-Based</h3>
-          <p>Our treatments and recommendations are grounded in the latest medical research and clinical guidelines.</p>
-        </div>
-        <div class="value-item">
-          <div class="value-icon">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-          </div>
-          <h3>Holistic Wellness</h3>
-          <p>We address the physical, emotional, and social aspects of women's health for complete wellbeing.</p>
-        </div>
-        <div class="value-item">
-          <div class="value-icon">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L4.5 20.29l.71 .71L12 18l6.79 3.29.71-.71L12 2z"/></svg>
-          </div>
-          <h3>Patient Empowerment</h3>
-          <p>We educate and involve you in every decision, ensuring you feel confident in your care journey.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+        <a href="index.html#contact" class="bg-brand-charcoal text-brand-petal px-6 py-2 rounded-full text-xs uppercase tracking-tighter">Consultation</a>
+    </nav>
 
-  <section class="container">
-    <h2>Meet Our Team</h2>
-    <p style="text-align: center; color: var(--color-label); max-width: 600px; margin: 0 auto var(--spacing-6);">
-      Our board-certified OB-GYNs, midwives, and women's health specialists bring decades of combined experience to provide exceptional care for every stage of womanhood.
-    </p>
-    
-    <div class="team-grid">
-      <div class="team-member">
-        <img src="https://via.placeholder.com/120" alt="Dr. Sarah Chen">
-        <h3>Dr. Sarah Chen, MD</h3>
-        <p>OB-GYN Specialist<br>Maternal-Fetal Medicine</p>
-      </div>
-      <div class="team-member">
-        <img src="https://via.placeholder.com/120" alt="Lisa Rodriguez">
-        <h3>Lisa Rodriguez, CNM</h3>
-        <p>Certified Nurse Midwife<br>Natural Birth Specialist</p>
-      </div>
-      <div class="team-member">
-        <img src="https://via.placeholder.com/120" alt="Dr. Michael Okoro">
-        <h3>Dr. Michael Okoro, MD</h3>
-        <p>Reproductive Endocrinologist<br>Fertility Specialist</p>
-      </div>
-      <div class="team-member">
-        <img src="https://via.placeholder.com/120" alt="Dr. Emily Watson">
-        <h3>Dr. Emily Watson, MD</h3>
-        <p>Gynecologic Oncologist<br>Minimally Invasive Surgery</p>
-      </div>
-    </div>
-  </section>
+    <div class="fixed inset-0 mesh-gradient opacity-40 pointer-events-none"></div>
 
-  <section class="stats-section">
-    <div class="stat-item">
-      <h3>15+</h3>
-      <p>Years of Combined Experience</p>
-    </div>
-    <div class="stat-item">
-      <h3>5,000+</h3>
-      <p>Healthy Babies Delivered</p>
-    </div>
-    <div class="stat-item">
-      <h3>98%</h3>
-      <p>Patient Satisfaction Rate</p>
-    </div>
-    <div class="stat-item">
-      <h3>24/7</h3>
-      <p>On-Call Support Available</p>
-    </div>
-  </section>
+    <main class="pt-40 pb-20">
+        <!-- Editorial Header -->
+        <section class="px-8 md:px-24 mb-32">
+            <div class="max-w-4xl">
+                <span class="block mb-6 uppercase tracking-[0.3em] text-xs text-brand-clay italic reveal-up">The NurtureCare Ethos</span>
+                <h1 class="font-display text-6xl md:text-8xl leading-tight text-brand-charcoal mb-12 reveal-up">
+                    Presence as the <br/>
+                    <span class="italic font-light ml-12 md:ml-32 text-brand-terracotta">Ultimate Medicine.</span>
+                </h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start reveal-up" style="transition-delay: 0.2s;">
+                    <p class="text-xl text-brand-clay leading-relaxed font-display italic">
+                        At NurtureCare, we believe that healthcare is more than a clinical transaction. It is a sacred partnership built on radical listening and unwavering presence.
+                    </p>
+                    <p class="text-sm text-brand-charcoal opacity-70 leading-relaxed font-sans">
+                        Founded by a collective of practitioners who felt the modern medical system had lost its "heart," NurtureCare was designed as a sanctuary. Here, the metrics of success aren't just clinical outcomes, but the quiet confidence a woman feels in her own body.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-  <footer>
-    <div class="footer-content container">
-      <div class="footer-section">
-        <h3>NurtureCare</h3>
-        <p>Compassionate women's health clinic specializing in prenatal care, postpartum support, and holistic women's wellness.</p>
-      </div>
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="services.html">Services</a>
-        <a href="resources.html">Resources</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="footer-section">
-        <h3>Contact Us</h3>
-        <p>📞 (555) 123-4567</p>
-        <p>✉️ info@nurturecare.com</p>
-        <p>📍 123 Wellness Ave, Health City, HC 12345</p>
-      </div>
-      <div class="footer-section">
-        <h3>Follow Us</h3>
-        <p>Connect with us for health tips, clinic updates, and community events.</p>
-        <div>
-          <a href="#" style="margin-right: var(--spacing-3);">Facebook</a>
-          <a href="#" style="margin-right: var(--spacing-3);">Instagram</a>
-          <a href="#">Twitter</a>
-        </div>
-      </div>
-    </div>
-    <div style="text-align: center; padding: var(--spacing-4) 0; border-top: 1px solid rgba(255,255,255,0.1); margin-top: var(--spacing-6); font-size: 0.875rem;">
-      © 2026 NurtureCare Women's Health. All rights reserved. | HIPAA Compliant
-    </div>
-  </footer>
+        <!-- Aesthetic Team Section -->
+        <section class="px-8 md:px-24 py-32 bg-brand-charcoal text-white rounded-[3rem] mx-4 mb-32">
+            <div class="text-center mb-24 reveal-up">
+                <h2 class="font-display text-5xl italic mb-4">The Guardians</h2>
+                <p class="text-xs uppercase tracking-[0.4em] text-brand-clay italic">A Confluence of Expertise & Empathy</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- Practitioner 1 -->
+                <div class="group reveal-up" style="transition-delay: 0.1s;">
+                    <div class="aspect-[4/5] bg-brand-clay bg-opacity-10 mb-6 overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-700">
+                         <div class="absolute inset-0 border border-brand-clay border-opacity-20 flex items-center justify-center italic text-xl text-brand-clay">Portrait Studio</div>
+                    </div>
+                    <h3 class="font-display text-2xl mb-1 italic">Dr. Elena Thorne</h3>
+                    <p class="text-[0.65rem] uppercase tracking-widest text-brand-terracotta mb-4">Founder & Lead Obstetrician</p>
+                    <p class="text-xs opacity-60 leading-relaxed italic">"Medicine starts where a woman feels she has finally been heard."</p>
+                </div>
+
+                <!-- Practitioner 2 -->
+                <div class="group reveal-up" style="transition-delay: 0.2s;">
+                    <div class="aspect-[4/5] bg-brand-clay bg-opacity-10 mb-6 overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute inset-0 border border-brand-clay border-opacity-20 flex items-center justify-center italic text-xl text-brand-clay">Portrait Studio</div>
+                    </div>
+                    <h3 class="font-display text-2xl mb-1 italic">Sarah Valerius, CNM</h3>
+                    <p class="text-[0.65rem] uppercase tracking-widest text-brand-terracotta mb-4">Principal Midwife</p>
+                    <p class="text-xs opacity-60 leading-relaxed italic">"Guiding the transition into motherhood with tradition and evidence."</p>
+                </div>
+
+                <!-- Practitioner 3 -->
+                <div class="group reveal-up" style="transition-delay: 0.3s;">
+                    <div class="aspect-[4/5] bg-brand-clay bg-opacity-10 mb-6 overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute inset-0 border border-brand-clay border-opacity-20 flex items-center justify-center italic text-xl text-brand-clay">Portrait Studio</div>
+                    </div>
+                    <h3 class="font-display text-2xl mb-1 italic">Julianne Moss</h3>
+                    <p class="text-[0.65rem] uppercase tracking-widest text-brand-terracotta mb-4">Holistic Wellness Director</p>
+                    <p class="text-xs opacity-60 leading-relaxed italic">"Harmonizing nutritional science with ancestral wisdom."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="max-w-4xl mx-auto px-8 py-20 border-l border-brand-charcoal border-opacity-5">
+            <div class="grid gap-24 font-light">
+                <div class="reveal-up">
+                    <span class="text-brand-terracotta font-display italic text-4xl block mb-4">01. Radical Personalization</span>
+                    <p class="text-lg text-brand-clay">No two bodies share the same rhythm. Our protocols are fluid, adapting to your specific physiological and emotional needs at every turn.</p>
+                </div>
+                <div class="reveal-up">
+                    <span class="text-brand-terracotta font-display italic text-4xl block mb-4">02. Evidence with Intuition</span>
+                    <p class="text-lg text-brand-clay">We leverage the latest clinical data through the lens of patient intuition. We respect that you are the primary expert of your own experience.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-24 px-8 text-center bg-brand-sand border-t border-brand-clay border-opacity-5">
+        <div class="font-display italic text-6xl text-brand-charcoal mb-8">NurtureCare</div>
+        <p class="text-xs uppercase tracking-[0.5em] text-brand-clay">&copy; 2026 Crafted for Life.</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>

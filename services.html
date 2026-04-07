@@ -1,504 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Services - NurtureCare Women's Health</title>
-  <!-- Stripe-inspired fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    /* Stripe-inspired design system */
-    :root {
-      /* Color Palette */
-      --color-bg: #ffffff;
-      --color-text: #171717;
-      --color-accent: #533afd;
-      --color-heading: #061b31;
-      --color-body: #64748d;
-      --color-label: #273951;
-      --color-border: #e5edf5;
-      --color-success: #15be53;
-      --color-brand-dark: #1c1e54;
-      --color-shadow-blue: rgba(50,50,93,0.25);
-      --color-shadow-black: rgba(0,0,0,0.1);
-      
-      /* Typography */
-      --font-primary: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      --font-mono: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-      
-      /* Spacing */
-      --spacing-1: 4px;
-      --spacing-2: 8px;
-      --spacing-3: 12px;
-      --spacing-4: 16px;
-      --spacing-5: 24px;
-      --spacing-6: 32px;
-      --spacing-7: 48px;
-      --spacing-8: 64px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrated Services | NurtureCare</title>
     
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: var(--font-primary);
-      color: var(--color-text);
-      background: var(--color-bg);
-      line-height: 1.6;
-    }
-    
-    h1, h2, h3, h4, h5, h6 {
-      color: var(--color-heading);
-      font-weight: 300;
-      line-height: 1.2;
-      margin-bottom: var(--spacing-3);
-    }
-    
-    h1 { font-size: 2.5rem; letter-spacing: -0.96px; }
-    h2 { font-size: 2rem; letter-spacing: -0.64px; }
-    h3 { font-size: 1.75rem; letter-spacing: -0.26px; }
-    h4 { font-size: 1.5rem; letter-spacing: -0.22px; }
-    p, li, label, input, textarea, select {
-      color: var(--color-body);
-      font-size: 1rem;
-      font-weight: 300-400;
-    }
-    
-    a {
-      color: var(--color-accent);
-      text-decoration: none;
-      font-weight: 400;
-    }
-    
-    a:hover {
-      color: #4434d4;
-    }
-    
-    .container {
-      width: 90%;
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: var(--spacing-6) 0;
-    }
-    
-    .btn-primary {
-      background: var(--color-accent);
-      color: white;
-      border: none;
-      padding: var(--spacing-2) var(--spacing-4);
-      border-radius: 4px;
-      font-family: var(--font-primary);
-      font-weight: 400;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-    
-    .btn-primary:hover {
-      background: #4434d4;
-    }
-    
-    .btn-outline {
-      background: transparent;
-      color: var(--color-accent);
-      border: 1px solid #b9b9f9;
-      padding: var(--spacing-2) var(--spacing-4);
-      border-radius: 4px;
-      font-family: var(--font-primary);
-      font-weight: 400;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-    
-    .btn-outline:hover {
-      background: rgba(83,58,253,0.05);
-    }
-    
-    .card {
-      background: white;
-      border: 1px solid var(--color-border);
-      border-radius: 6px;
-      padding: var(--spacing-5);
-      box-shadow: var(--color-shadow-blue) 0px 30px 45px -30px, var(--color-shadow-black) 0px 18px 36px -18px;
-      margin-bottom: var(--spacing-5);
-    }
-    
-    header {
-      background: white;
-      border-bottom: 1px solid var(--color-border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 80px;
-    }
-    
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 300;
-      letter-spacing: -0.64px;
-      color: var(--color-heading);
-    }
-    
-    .nav-links {
-      display: flex;
-      gap: var(--spacing-5);
-    }
-    
-    .nav-links a {
-      color: var(--color-label);
-      font-weight: 400;
-      font-size: 0.875rem;
-    }
-    
-    .nav-links a:hover {
-      color: var(--color-heading);
-    }
-    
-    .hero {
-      text-align: center;
-      padding: var(--spacing-7) 0;
-      background: white;
-    }
-    
-    .hero h1 {
-      font-size: 2.75rem;
-      letter-spacing: -1.1px;
-      margin-bottom: var(--spacing-4);
-    }
-    
-    .hero p {
-      font-size: 1.25rem;
-      color: var(--color-body);
-      max-width: 600px;
-      margin: 0 auto var(--spacing-5);
-    }
-    
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: var(--spacing-5);
-      margin-top: var(--spacing-6);
-    }
-    
-    .service-card {
-      border-left: 4px solid var(--color-accent);
-      padding-left: var(--spacing-4);
-    }
-    
-    .service-card h3 {
-      color: var(--color-heading);
-      margin-bottom: var(--spacing-3);
-    }
-    
-    .service-card ul {
-      list-style: none;
-      padding: 0;
-    }
-    
-    .service-card li {
-      padding: var(--spacing-2) 0;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      display: flex;
-      align-items: center;
-    }
-    
-    .service-card li:last-child {
-      border-bottom: none;
-    }
-    
-    .service-card li::before {
-      content: "→";
-      color: var(--color-accent);
-      margin-right: var(--spacing-3);
-      font-weight: bold;
-    }
-    
-    .stats-section {
-      background: rgba(83,58,253,0.02);
-      border-radius: 8px;
-      padding: var(--spacing-6);
-      margin: var(--spacing-7) 0;
-      text-align: center;
-    }
-    
-    .stats-container {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: var(--spacing-4);
-    }
-    
-    .stat-item {
-      flex: 1;
-      min-width: 180px;
-    }
-    
-    .stat-item h3 {
-      font-size: 2.5rem;
-      margin-bottom: var(--spacing-2);
-      font-weight: 300;
-      color: var(--color-accent);
-    }
-    
-    .stat-item p {
-      color: var(--color-label);
-      font-size: 1.1rem;
-    }
-    
-    .cta-section {
-      text-align: center;
-      padding: var(--spacing-8) 0;
-      background: var(--color-brand-dark);
-      color: white;
-    }
-    
-    .cta-section h2 {
-      margin-bottom: var(--spacing-4);
-    }
-    
-    .cta-section p {
-      max-width: 600px;
-      margin: 0 auto var(--spacing-5);
-      opacity: 0.9;
-    }
-    
-    footer {
-      background: var(--color-brand-dark);
-      color: rgba(255,255,255,0.8);
-      padding: var(--spacing-6) 0;
-    }
-    
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: var(--spacing-5);
-    }
-    
-    .footer-section h3 {
-      color: white;
-      margin-bottom: var(--spacing-3);
-    }
-    
-    .footer-section a {
-      color: rgba(255,255,255,0.7);
-      display: block;
-      margin-bottom: var(--spacing-2);
-    }
-    
-    .footer-section a:hover {
-      color: white;
-    }
-    
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-      
-      .hero h1 {
-        font-size: 2rem;
-        letter-spacing: -0.64px;
-      }
-      
-      .footer-content {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      .stats-container {
-        flex-direction: column;
-      }
-    }
-  </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            sand: '#F9F7F2',
+                            terracotta: '#C97D60',
+                            charcoal: '#1A1A1A',
+                            clay: '#8D7B68',
+                            petal: '#F4E0DB'
+                        }
+                    },
+                    fontFamily: { display: ['Cormorant Garamond', 'serif'], sans: ['Outfit', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #F9F7F2; color: #1A1A1A; -webkit-font-smoothing: antialiased; }
+        .reveal-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-visible { opacity: 1; transform: translateY(0); }
+        .service-card { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; }
+        .service-card:hover { transform: scale(1.02); }
+    </style>
 </head>
-<body>
-  <header>
-    <div class="nav-container container">
-      <div class="logo">NurtureCare</div>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="services.html">Services</a>
-        <a href="resources.html">Resources</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="container">
-      <h1>Our Comprehensive Women's Health Services</h1>
-      <p>At NurtureCare, we offer a full spectrum of obstetric and gynecological services designed to support you through every stage of womanhood. From preconception counseling to menopause management, our evidence-based approach combines medical excellence with compassionate care.</p>
-    </div>
-  </section>
-
-  <section class="container">
-    <h2>Prenatal & Pregnancy Care</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Comprehensive Prenatal Care</h3>
-        <ul>
-          <li>Monthly checkups with fetal monitoring</li>
-          <li>Genetic screening and counseling</li>
-          <li>Gestational diabetes management</li>
-          <li>High-risk pregnancy supervision</li>
-          <li>Nutrition and lifestyle guidance</li>
-          <li>Birth plan development</li>
-          <li>24/7 on-call obstetric support</li>
-        </ul>
-      </div>
-      
-      <div class="service-card">
-        <h3>Advanced Prenatal Diagnostics</h3>
-        <ul>
-          <li>First trimester screening (NT scan)</li>
-          <li>Anatomy ultrasound (20-week scan)</li>
-          <li>3D/4D fetal imaging</li>
-          <li>Fetal echocardiography</li>
-          <li>Amniocentesis and CVS</li>
-          <li>Non-invasive prenatal testing (NIPT)</li>
-          <li>Growth scans and Doppler studies</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="container">
-    <h2>Labor & Delivery Services</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Natural Birth Support</h3>
-        <ul>
-          <li>Water birth options</li>
-          <li>Doula collaboration</li>
-          <li>Hypnobirthing techniques</li>
-          <li>Freedom of movement during labor</li>
-          <li>Minimal intervention approaches</li>
-          <li>Immediate skin-to-skin contact</li>
-          <li>Delayed cord clamping</li>
-        </ul>
-      </div>
-      
-      <div class="service-card">
-        <h3>Medical Birth Support</h3>
-        <ul>
-          <li>Epidural and pain management</li>
-          <li>Induction and augmentation</li>
-          <li>Cesarean section services</li>
-          <li>VBAC (Vaginal Birth After Cesarean)</li>
-          <li>Neonatal resuscitation</li>
-          <li>NICU coordination</li>
-          <li>Post-delivery care</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="container">
-    <h2>Gynecological & Wellness Services</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Routine Gynecological Care</h3>
-        <ul>
-          <li>Annual well-woman exams</li>
-          <li>Pap smears and HPV testing</li>
-          <li>STI screening and treatment</li>
-          <li>Contraceptive counseling</li>
-          <li>Menstrual disorder management</li>
-          <li>Menopause and perimenopause care</li>
-          <li>Bone density screening</li>
-        </ul>
-      </div>
-      
-      <div class="service-card">
-        <h3>Specialized Gynecological Services</h3>
-        <ul>
-          <li>Infertility evaluation and treatment</li>
-          <li>PCOS management</li>
-          <li>Endometriosis care</li>
-          <li>Uterine fibroid treatment</li>
-          <li>Pelvic floor therapy</li>
-          <li>Laparoscopic and hysteroscopic surgery</li>
-          <li>Colposcopy and LEEP procedures</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="stats-section">
-    <h2>Our Commitment to Excellence</h2>
-    <div class="stats-container">
-      <div class="stat-item">
-        <h3>98%</h3>
-        <p>Patient Satisfaction</p>
-      </div>
-      <div class="stat-item">
-        <h3>15+</h3>
-        <p>Years Avg. Experience</p>
-      </div>
-      <div class="stat-item">
-        <h3>5,000+</h3>
-        <p>Deliveries Completed</p>
-      </div>
-      <div class="stat-item">
-        <h3>24/7</h3>
-        <p>Available Support</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-section">
-    <h2>Ready to Begin Your Journey?</h2>
-    <p>Experience healthcare that truly listens and responds to your needs. Our team is here to support you with expertise, compassion, and personalized attention every step of the way.</p>
-    <div>
-      <a href="contact.html" class="btn-primary">Schedule Your Consultation</a>
-      <a href="about.html" class="btn-outline">Learn About Our Team</a>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-content container">
-      <div class="footer-section">
-        <h3>NurtureCare</h3>
-        <p>Compassionate women's health clinic specializing in prenatal care, postpartum support, and holistic women's wellness.</p>
-      </div>
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="services.html">Services</a>
-        <a href="resources.html">Resources</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="footer-section">
-        <h3>Contact Us</h3>
-        <p>📞 (555) 123-4567</p>
-        <p>✉️ info@nurturecare.com</p>
-        <p>📍 123 Wellness Ave, Health City, HC 12345</p>
-      </div>
-      <div class="footer-section">
-        <h3>Follow Us</h3>
-        <p>Connect with us for health tips, clinic updates, and community events.</p>
-        <div>
-          <a href="#" style="margin-right: var(--spacing-3);">Facebook</a>
-          <a href="#" style="margin-right: var(--spacing-3);">Instagram</a>
-          <a href="#">Twitter</a>
+<body class="font-sans font-light">
+    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference text-brand-sand">
+        <a href="index.html" class="font-display text-3xl italic tracking-tight">NurtureCare</a>
+        <div class="hidden md:flex space-x-12 text-sm uppercase tracking-widest font-medium">
+            <a href="about.html" class="hover:italic transition-all">Philosophy</a>
+            <a href="services.html" class="hover:italic transition-all">Services</a>
+            <p class="opacity-50">Journal</p>
         </div>
-      </div>
-    </div>
-    <div style="text-align: center; padding: var(--spacing-4) 0; border-top: 1px solid rgba(255,255,255,0.1); margin-top: var(--spacing-6); font-size: 0.875rem;">
-      © 2026 NurtureCare Women's Health. All rights reserved. | HIPAA Compliant
-    </div>
-  </footer>
+        <a href="index.html#contact" class="bg-brand-charcoal text-brand-petal px-6 py-2 rounded-full text-xs uppercase tracking-tighter">Consultation</a>
+    </nav>
+
+    <main class="pt-40">
+        <section class="px-8 md:px-24 mb-24 reveal-up">
+            <span class="block mb-6 uppercase tracking-[0.3em] text-[10px] text-brand-clay italic">Clinical Offerings</span>
+            <h1 class="font-display text-6xl md:text-8xl leading-tight mb-8">Integrated <br/><span class="italic text-brand-terracotta">Sanctuary of Care</span></h1>
+            <p class="max-w-xl text-brand-clay text-lg">From fertility to menopause, we provide clinical precision within the aura of a spa-like retreat.</p>
+        </section>
+
+        <!-- Service Vertical Showcase -->
+        <section class="grid grid-cols-1 md:grid-cols-2">
+            <!-- Service 1 -->
+            <div class="relative min-h-[70vh] flex flex-col justify-end p-12 md:p-24 bg-brand-charcoal text-white border-r border-brand-clay border-opacity-10 reveal-up">
+                <span class="text-brand-terracotta font-display italic text-8xl absolute top-12 left-12 opacity-20">01</span>
+                <div class="relative z-10">
+                    <h2 class="font-display text-4xl italic mb-6">Concierge Prenatal & Birth</h2>
+                    <p class="opacity-70 text-sm leading-relaxed mb-8 max-w-sm">Comprehensive prenatal monitoring, 4D diagnostic imaging, and 24/7 direct provider access for the high-end pregnancy journey.</p>
+                    <ul class="text-[10px] uppercase tracking-widest space-y-3 mb-10 opacity-50">
+                        <li>— Genetic Profiling</li>
+                        <li>— Bespoke Birth Planning</li>
+                        <li>— Postpartum Home Visits</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="relative min-h-[70vh] flex flex-col justify-end p-12 md:p-24 bg-brand-sand text-brand-charcoal reveal-up" style="transition-delay: 0.1s;">
+                 <span class="text-brand-clay font-display italic text-8xl absolute top-12 left-12 opacity-10">02</span>
+                <div class="relative z-10">
+                    <h2 class="font-display text-4xl italic mb-6">Gynaecological Longevity</h2>
+                    <p class="text-brand-clay text-sm leading-relaxed mb-8 max-w-sm">Advanced hormonal balancing, minimally invasive procedures, and preventive screening for enduring vitality.</p>
+                    <ul class="text-[10px] uppercase tracking-widest text-brand-clay space-y-3 mb-10 opacity-70">
+                        <li>— Functional Hormone Testing</li>
+                        <li>— Pelvic Wellness Mapping</li>
+                        <li>— Adolescent Care Sequences</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="relative min-h-[70vh] flex flex-col justify-end p-12 md:p-24 bg-[#EBE7DF] text-brand-charcoal md:col-span-2 reveal-up" style="transition-delay: 0.2s;">
+                <span class="text-brand-clay font-display italic text-8xl absolute top-12 left-12 opacity-10">03</span>
+                <div class="relative z-10 max-w-lg">
+                    <h2 class="font-display text-4xl italic mb-6">Psychological Resilience</h2>
+                    <p class="text-brand-clay text-sm leading-relaxed mb-8">Integrated maternal mental health, reproductive trauma support, and transitions-based therapy sessions.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-24 px-8 text-center bg-brand-sand">
+        <div class="font-display italic text-6xl text-brand-charcoal mb-8">NurtureCare</div>
+        <p class="text-xs uppercase tracking-[0.5em] text-brand-clay">&copy; 2026 Crafted for Life.</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
